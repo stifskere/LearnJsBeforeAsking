@@ -9,6 +9,8 @@ ul {
 }
 
 #root {
+  margin-top: 2vh;
+
   position: absolute;
 
   height: 100%;
@@ -50,7 +52,7 @@ blockquote {
 
 footer {
   margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-bottom: 4vh;
 
   display: flex;
   justify-content: space-evenly;
@@ -62,4 +64,22 @@ footer {
 
 * {
   margin: 0;
+}
+
+.hoverHyperLink {
+  color: cadetblue;
+
+  cursor: pointer;
+}
+
+.hoverHyperLink:hover {
+  color: darkcyan;
+}
+
+.hoverHyperLink:hover:before {
+  content: "🔗";
+  color: black;
+
+  position: absolute;
+  transform: translateX(-150%);
 }

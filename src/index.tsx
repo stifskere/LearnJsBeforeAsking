@@ -1,5 +1,5 @@
 import {createRoot} from "react-dom/client";
-import {ReactElement, StrictMode, useEffect} from "react";
+import {ReactElement, StrictMode, SyntheticEvent, useEffect} from "react";
 import {$} from "./functions";
 
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -29,6 +29,12 @@ function App(): ReactElement {
         }, 3000);
     }, []);
 
+    async function copyElementHyperLink(event: SyntheticEvent): Promise<void> {
+        const copiedUrl: string = `${window.location.protocol}//${window.location.host}/#${event.currentTarget.id}`;
+        await navigator.clipboard.writeText(copiedUrl);
+        window.location.href = copiedUrl;
+    }
+
     return (<>
         <header>
             <h1>What is this?</h1>
@@ -39,7 +45,7 @@ function App(): ReactElement {
             <p>The point being you don't know enough JavaScript to ask a formal question, so please... <b>Learn JavaScript.</b></p>
         </header>
         <section>
-            <h1>How do I learn JavaScript?</h1>
+            <h1 id="howdoilearn" onClick={copyElementHyperLink} className="hoverHyperLink">How do I learn JavaScript?</h1>
             <p>
                 Internet is full of guides, documentation... A lot of things for you to learn, most languages, libraries or programs that have a big
                 user base also have documentation (and are pretty well documented), the first version of JavaScript was made in a week, but you can still
@@ -85,7 +91,7 @@ function App(): ReactElement {
             <p>The best programmers are also the best google searchers, you can get started with this <a href="https://support.google.com/websearch/answer/134479?hl=en">small guide</a> made by google.</p>
         </section>
         <section>
-            <h1>You really want to ask for help? ok.</h1>
+            <h1 id="doyoureallywanttoask" onClick={copyElementHyperLink} className="hoverHyperLink">You really want to ask for help? ok.</h1>
             <h2>What not to do?</h2>
             <h3>Don't ask or say the following things</h3>
             <ul>
