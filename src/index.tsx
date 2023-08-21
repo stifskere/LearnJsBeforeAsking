@@ -1,5 +1,5 @@
 import {createRoot} from "react-dom/client";
-import {ReactElement, StrictMode} from "react";
+import {ReactElement, StrictMode, useEffect} from "react";
 import {$} from "./functions";
 
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -8,6 +8,27 @@ import {default as GithubStyle} from "react-syntax-highlighter/dist/esm/styles/h
 import "./index.css";
 
 function App(): ReactElement {
+
+    useEffect((): void => {
+        const possibleTitles: string[] = [
+            "JavaScript Foundations: A Prerequisite for Asking Questions",
+            "Master JavaScript Basics: Ask Better Questions",
+            "Before You Ask: Learn JavaScript Fundamentals",
+            "JavaScript Proficiency: Enhance Your Inquiries",
+            "Unlocking JavaScript: The Key to Informed Questions",
+            "Building a Strong Foundation: Learn JavaScript First",
+            "JavaScript Essentials: Ask with Confidence",
+            "Level Up Your Questions: Learn JavaScript",
+            "JavaScript Primer: Ask Smarter, Get Better Answers",
+            "Empower Your Queries: Learn JavaScript"
+        ];
+
+        let index: number = 0;
+        setInterval((): void => {
+            document.title = possibleTitles[++index > possibleTitles.length - 1 ? (index = 0) : index];
+        }, 3000);
+    }, []);
+
     return (<>
         <header>
             <h1>What is this?</h1>
@@ -18,7 +39,7 @@ function App(): ReactElement {
             <p>The point being you don't know enough JavaScript to ask a formal question, so please... <b>Learn JavaScript.</b></p>
         </header>
         <section>
-            <h1>How do i learn JavaScript?</h1>
+            <h1>How do I learn JavaScript?</h1>
             <p>
                 Internet is full of guides, documentation... A lot of things for you to learn, most languages, libraries or programs that have a big
                 user base also have documentation (and are pretty well documented), the first version of JavaScript was made in a week, but you can still
@@ -66,7 +87,7 @@ function App(): ReactElement {
         <section>
             <h1>You really want to ask for help? ok.</h1>
             <h2>What not to do?</h2>
-            <h3>Don't ask or say the following things.</h3>
+            <h3>Don't ask or say the following things</h3>
             <ul>
                 <li><p>I have this error, but I don't know what it means.</p></li>
                 <li><p>I can send zip and send you my code in DM (or not even in dm).</p></li>
@@ -146,12 +167,25 @@ function App(): ReactElement {
             <p>When you know all of that, you can just ask a good question like:</p>
             <br/>
             <blockquote>
-                "I have this error, i don't understand why it means by <i>"Symbol(Symbol.iterator)"</i>.<br/>
-                I searched the following on google: "Javascript Symbol.iterator" but it didn't give me any result i could understand.<br/>
+                "I have this error, I don't understand why it means by <i>"Symbol(Symbol.iterator)"</i>.<br/>
+                I searched the following on google: <i>"Javascript Symbol.iterator"</i> but it didn't give me any result I could understand.<br/>
                 The stack trace says it's on this line but here is the whole function anyways, and here are the definitions for the custom functions ran inside.<br/>
                 &lt;insert definitions here&gt;"
             </blockquote>
         </section>
+        <footer>
+            <div>
+                <p>Similar problems:</p>
+                <ul>
+                    <li><a href="https://xyproblem.info/">The XY problem</a></li>
+                    <li><a href="https://nohello.net/">No hello</a></li>
+                    <li><a href="https://stackoverflow.com/help/how-to-ask">How do i ask a good question?</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>Star this in <a href="https://github.com/stifskere/LearnJsBeforeAsking">GitHub</a></p>
+            </div>
+        </footer>
     </>);
 }
 
