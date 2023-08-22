@@ -50,13 +50,13 @@ function App(): ReactElement {
             document.title = possibleTitles[++index > possibleTitles.length - 1 ? (index = 0) : index];
         }, 3000);
 
-        function sdmV() {
+        function sdmV(): void {
             Cookies.createOrRewrite("dark-mode", `${!(Cookies.get("dark-mode") === "true")}`, { expires: 10, secure: true, sameSite: "Strict" });
             setDarkMode(Cookies.get("dark-mode") === "true");
             sdm();
         }
 
-        function sdm() {
+        function sdm(): void {
             swapDarkMode(darkMode);
         }
 
