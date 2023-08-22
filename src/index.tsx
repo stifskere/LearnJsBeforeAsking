@@ -1,15 +1,32 @@
 import {createRoot} from "react-dom/client";
-import {ReactElement, StrictMode, SyntheticEvent, useEffect} from "react";
-import {$} from "./functions";
+import {ReactElement, StrictMode, SyntheticEvent, useEffect, useState} from "react";
+import {$, $$, Cookies} from "./functions";
 
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {default as GithubStyle} from "react-syntax-highlighter/dist/esm/styles/hljs/github";
+import {default as GithubDarkStyle} from "react-syntax-highlighter/dist/esm/styles/hljs/gml";
 
 import "./index.css";
 
+type StateTuple<T> = [T, ((value: (((prevState: T) => T) | T)) => void)];
+
+function swapDarkMode(darkMode: boolean): void {
+    document.body.style.backgroundColor = !darkMode ? "#333333" : "#ffffff";
+
+    for (const elem of $$("h1:not([class^=\"hoverHyperLink\"]), h2, h3, h4, h5, h6, p")) {
+        (elem as HTMLElement).style.color = !darkMode ? "#ffffff" : "#000000";
+    }
+
+    $$("footer").item(0).classList[!darkMode ? "add" : "remove"]("darkQuoteBackground");
+
+    $$("blockquote").item(0).classList[!darkMode ? "add" : "remove"]("darkQuoteBackground", "darkText");
+}
+
 function App(): ReactElement {
 
-    useEffect((): void => {
+    const [darkMode, setDarkMode]: StateTuple<boolean> = useState<boolean>(Cookies.get("dark-mode") === "true");
+
+    useEffect((): () => void => {
         const possibleTitles: string[] = [
             "JavaScript Foundations: A Prerequisite for Asking Questions",
             "Master JavaScript Basics: Ask Better Questions",
@@ -24,10 +41,30 @@ function App(): ReactElement {
         ];
 
         let index: number = 0;
-        setInterval((): void => {
+        const interval: NodeJS.Timer = setInterval((): void => {
             document.title = possibleTitles[++index > possibleTitles.length - 1 ? (index = 0) : index];
         }, 3000);
-    }, []);
+
+        function sdmV() {
+            Cookies.createOrRewrite("dark-mode", `${!(Cookies.get("dark-mode") === "true")}`, { expires: 10, secure: true, sameSite: "Strict" });
+            setDarkMode(Cookies.get("dark-mode") === "true");
+            sdm();
+        }
+
+        function sdm() {
+            swapDarkMode(darkMode);
+        }
+
+        const swapDarkModeButton: HTMLButtonElement = $("darkModeButton");
+        swapDarkModeButton.addEventListener("click", sdmV);
+
+        sdm();
+
+        return () => {
+            clearInterval(interval);
+            swapDarkModeButton.removeEventListener("click", sdmV);
+        };
+    }, [darkMode]);
 
     async function copyElementHyperLink(event: SyntheticEvent): Promise<void> {
         const copiedUrl: string = `${window.location.protocol}//${window.location.host}/#${event.currentTarget.id}`;
@@ -138,7 +175,7 @@ function App(): ReactElement {
         </section>
         <section>
             <p>Here is an example error:</p>
-            <SyntaxHighlighter language="JavaScript" style={GithubStyle}>
+            <SyntaxHighlighter language="JavaScript" style={!darkMode ? GithubDarkStyle : GithubStyle}>
                 {"An error occurred:\n" +
                     "TypeError: Cannot read property 'Symbol(Symbol.iterator)' of undefined\n" +
                     "    at performDivision (/path/to/your/code.js:2:12)\n" +
@@ -173,7 +210,7 @@ function App(): ReactElement {
             <p>When you know all of that, you can just ask a good question like:</p>
             <br/>
             <blockquote>
-                "I have this error, I don't understand why it means by <i>"Symbol(Symbol.iterator)"</i>.<br/>
+                "I have this error, I don't understand what it means by <i>"Symbol(Symbol.iterator)"</i>.<br/>
                 I searched the following on google: <i>"Javascript Symbol.iterator"</i> but it didn't give me any result I could understand.<br/>
                 The stack trace says it's on this line but here is the whole function anyways, and here are the definitions for the custom functions ran inside.<br/>
                 &lt;insert definitions here&gt;"
@@ -190,10 +227,11 @@ function App(): ReactElement {
             </div>
             <div>
                 <p>Star this in <a href="https://github.com/stifskere/LearnJsBeforeAsking">GitHub</a></p>
+                <button className="linkButton" id="darkModeButton">Read this in {!darkMode ? "light" : "dark"} mode</button>
             </div>
         </footer>
     </>);
+
 }
 
 createRoot($("root")).render(<StrictMode><App /></StrictMode>);
-
