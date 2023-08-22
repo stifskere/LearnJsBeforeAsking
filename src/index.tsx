@@ -13,14 +13,11 @@ type StateTuple<T> = [T, ((value: (((prevState: T) => T) | T)) => void)];
 function swapDarkMode(darkMode: boolean): void {
     document.body.style.backgroundColor = darkMode ? "#ffffff" : "#282828";
 
-    for (const elem of $$("h1:not([class^=\"hoverHyperLink\"]), h2, h3, h4, h5, h6, p")) {
+    for (const elem of $$("h1:not([class^=\"hoverHyperLink\"]), h2, h3, h4, h5, h6, p"))
         (elem as HTMLElement).style.color = darkMode ? "#000000" : "#ffffff";
-    }
 
-    for (const marker of $$("ul li")) {
-        console.log(marker);
+    for (const marker of $$("ul li"))
         (marker as HTMLElement).classList[darkMode ? "remove" : "add"]("liWhiteBullets");
-    }
 
     $$("footer").item(0).classList[darkMode ? "remove" : "add"]("darkQuoteBackground");
 
