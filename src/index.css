@@ -123,3 +123,7 @@ footer {
 .darkText {
   color: white;
 }
+
+.liWhiteBullets::marker {
+  color: white;
+}

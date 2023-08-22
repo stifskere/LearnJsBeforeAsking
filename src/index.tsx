@@ -11,15 +11,20 @@ import "./index.css";
 type StateTuple<T> = [T, ((value: (((prevState: T) => T) | T)) => void)];
 
 function swapDarkMode(darkMode: boolean): void {
-    document.body.style.backgroundColor = !darkMode ? "#333333" : "#ffffff";
+    document.body.style.backgroundColor = darkMode ? "#ffffff" : "#282828";
 
     for (const elem of $$("h1:not([class^=\"hoverHyperLink\"]), h2, h3, h4, h5, h6, p")) {
-        (elem as HTMLElement).style.color = !darkMode ? "#ffffff" : "#000000";
+        (elem as HTMLElement).style.color = darkMode ? "#000000" : "#ffffff";
     }
 
-    $$("footer").item(0).classList[!darkMode ? "add" : "remove"]("darkQuoteBackground");
+    for (const marker of $$("ul li")) {
+        console.log(marker);
+        (marker as HTMLElement).classList[darkMode ? "remove" : "add"]("liWhiteBullets");
+    }
 
-    $$("blockquote").item(0).classList[!darkMode ? "add" : "remove"]("darkQuoteBackground", "darkText");
+    $$("footer").item(0).classList[darkMode ? "remove" : "add"]("darkQuoteBackground");
+
+    $$("blockquote").item(0).classList[darkMode ? "remove" : "add"]("darkQuoteBackground", "darkText");
 }
 
 function App(): ReactElement {
