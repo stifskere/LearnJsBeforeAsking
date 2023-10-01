@@ -229,9 +229,10 @@ function App(): ReactElement {
             </div>
             <div>
                 <p>Star this in <a href="https://github.com/stifskere/LearnJsBeforeAsking">GitHub</a></p>
-                <button className="linkButton" id="darkModeButton">Read this in {!darkMode ? "light" : "dark"} mode</button>
+                {/*<button className="linkButton" id="darkModeButton">Read this in {!darkMode ? "light" : "dark"} mode</button>*/}
             </div>
         </footer>
+        <button id="darkModeButton" className={darkMode ? "lightButtonIcon" : "darkButtonIcon"} style={{backgroundColor: darkMode ? "#313131" : "#868686"}} />
     </>);
 
 }
