@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/LearnJsBeforeAsking/static/css/main.f073afc0.css",
+    "main.js": "/LearnJsBeforeAsking/static/js/main.d8a79baa.js",
+    "index.html": "/LearnJsBeforeAsking/index.html",
+    "main.f073afc0.css.map": "/LearnJsBeforeAsking/static/css/main.f073afc0.css.map",
+    "main.d8a79baa.js.map": "/LearnJsBeforeAsking/static/js/main.d8a79baa.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f073afc0.css",
+    "static/js/main.d8a79baa.js"
+  ]
+}
