@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mkdir build/LearnJsBeforeAsking && mv build/static build/LearnJsBeforeAsking/static",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
