@@ -78,7 +78,7 @@ function App(): ReactElement {
         <header>
             <h1>What is this?</h1>
             <p>
-                If someone sent you to this page, you maybe did a stupid question, or asked something you could easily find in <a href="https://www.google.com">google</a>. Or you maybe just didn't even understand your own code and they couldn't help you with it.
+                If someone sent you to this page, you may have had a stupid question, or asked something you could easily find in <a href="https://www.google.com">google</a>. Or you maybe just didn't even understand your own code and they couldn't help you with it.
             </p>
             <br/>
             <p>The point being you don't know enough JavaScript to ask a formal question, so please... <b>Learn JavaScript.</b></p>
@@ -123,8 +123,8 @@ function App(): ReactElement {
         </section>
         <section>
             <p>
-                Real life projects are also a good way to upgrade your skills,
-                to get started with that there is a github repository called <a href="https://github.com/Asabeneh/30-Days-Of-JavaScript">30 days of javascript</a> made by Asabeneh.
+                Real life projects are also a good way to improve your skills,
+                to get started with that, there is a github repository called <a href="https://github.com/Asabeneh/30-Days-Of-JavaScript">30 days of javascript</a> made by Asabeneh.
             </p>
             <br/>
             <p>The best programmers are also the best google searchers, you can get started with this <a href="https://support.google.com/websearch/answer/134479?hl=en">small guide</a> made by google.</p>
@@ -225,11 +225,11 @@ function App(): ReactElement {
                     <li><a href="https://xyproblem.info/">The XY problem</a></li>
                     <li><a href="https://nohello.net/">No hello</a></li>
                     <li><a href="https://stackoverflow.com/help/how-to-ask">How do i ask a good question?</a></li>
+                    <li><a href="https://nometa.xyz/">No meta</a></li>
                 </ul>
             </div>
             <div>
                 <p>Star this in <a href="https://github.com/stifskere/LearnJsBeforeAsking">GitHub</a></p>
-                {/*<button className="linkButton" id="darkModeButton">Read this in {!darkMode ? "light" : "dark"} mode</button>*/}
             </div>
         </footer>
         <button id="darkModeButton" className={darkMode ? "lightButtonIcon" : "darkButtonIcon"} style={{backgroundColor: darkMode ? "#313131" : "#868686"}} />
