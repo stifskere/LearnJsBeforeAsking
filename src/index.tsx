@@ -143,7 +143,7 @@ function App(): ReactElement {
             <ul>
                 <li><p>Don't ask the same in multiple channels, search for the help channel and ask once there.</p></li>
                 <li><p>Don't ping staff or other members for help, wait for someone to answer, it's not their problem, it's yours.</p></li>
-                <li><p>Don't send zip files and pretend others to open them (covered next in this guide).</p></li>
+                <li><p>Don't send ZIP files and expect others to open them. (covered next in this guide).</p></li>
             </ul>
         </section>
         <section>
