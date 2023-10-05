@@ -172,3 +172,9 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media (orientation: portrait) {
+  section,  header {
+    margin-bottom: 4vh;
+  }
+}
